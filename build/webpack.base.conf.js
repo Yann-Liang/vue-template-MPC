@@ -34,7 +34,6 @@ var webpackConfig = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components')
     }
   },
@@ -66,7 +65,7 @@ var webpackConfig = {
           name: utils.assetsPath('fonts/[name].[ext]')
         }
       },
-      
+
     ]
   },
   plugins: [
@@ -78,7 +77,7 @@ var webpackConfig = {
       minChunks: 4 || chunks.length //公共模块被使用的最小次数。比如配置为3，也就是同一个模块只有被3个以外的页面同时引用时才会被提取出来作为common chunks。
 
     }),*/
-   
+
   ]
 }
 
@@ -86,7 +85,7 @@ var webpackConfig = {
 
 module.exports = vuxLoader.merge(webpackConfig, {
     options: {
-    
-  },	
+
+  },
   plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
 })
