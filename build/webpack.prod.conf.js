@@ -86,9 +86,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       chunks: chunks,
-	  	minChunks: 4 || chunks.length 
+	  	minChunks: 4 || chunks.length
     }),
-	/*
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -96,9 +95,9 @@ var webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])*/
+    ])
 
-   
+
 
   ]
 })
@@ -137,9 +136,21 @@ for (var pathname in pages) {
     inject: true,              // js插入位置
 	hash:true
   };
- 
+
   webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
+
+webpackConfig.plugins.push(new HtmlWebpackPlugin({
+  filename: config.build.index,
+  template: 'index.html',
+  inject: true,
+  minify: {
+    removeComments: true,
+    collapseWhitespace: true,
+    removeAttributeQuotes: true
+  },
+  chunksSortMode: 'dependency'
+}));
 
 
 
