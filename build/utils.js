@@ -40,6 +40,7 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
+        publicPath:'../../',//修复less 引用背景图不显示的问题
         fallback: 'vue-style-loader'
       })
     } else {
@@ -82,7 +83,7 @@ exports.getMultiEntry = function (globPath) {
   glob.sync(globPath).forEach(function (entry) {
     basename = path.basename(entry, path.extname(entry));
     tmp = entry.split('/').splice(-4);
-	
+
 	var pathsrc = tmp[0]+'/'+tmp[1];
 	if( tmp[0] == 'src' ){
 		pathsrc = tmp[1];
@@ -90,13 +91,13 @@ exports.getMultiEntry = function (globPath) {
 	//console.log(pathsrc)
     pathname = pathsrc + '/' + basename; // 正确输出js和html的路径
     entries[pathname] = entry;
-    
+
     //console.log(pathname+'-----------'+entry);
-    
+
   });
-  
+
   return entries;
-  
+
 }
 
 
@@ -117,7 +118,7 @@ var filecopy = function( src, dst ){
         paths.forEach(function( path ){
             var _src = src + '/' + path,
                 _dst = dst + '/' + path,
-                readable, writable;       
+                readable, writable;
             copyStat( _src, function( err, st ){
                 if( err ){
                     throw err;
@@ -127,7 +128,7 @@ var filecopy = function( src, dst ){
                     // 创建读取流
                     readable = fs.createReadStream( _src );
                     // 创建写入流
-                    writable = fs.createWriteStream( _dst );   
+                    writable = fs.createWriteStream( _dst );
                     // 通过管道来传输流
                     readable.pipe( writable );
                 }

@@ -34,7 +34,7 @@ var webpackConfig = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'src': path.resolve(__dirname, '../src'),
-      'components': path.resolve(__dirname, '../src/components')
+      // 'components': path.resolve(__dirname, '../src/components')
     }
   },
   module: {
@@ -87,5 +87,5 @@ module.exports = vuxLoader.merge(webpackConfig, {
     options: {
 
   },
-  plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
+  plugins: [ 'progress-bar', 'duplicate-style']
 })

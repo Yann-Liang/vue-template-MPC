@@ -47,3 +47,15 @@ for (var pathname in pages) {
   // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
   module.exports.plugins.push(new HtmlWebpackPlugin(conf));
 }
+
+module.exports.plugins.push(new HtmlWebpackPlugin({
+  filename: config.build.index,
+  template: 'index.html',
+  inject: true,
+  minify: {
+    removeComments: true,
+    collapseWhitespace: true,
+    removeAttributeQuotes: true
+  },
+  chunksSortMode: 'dependency'
+}));
