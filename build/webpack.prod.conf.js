@@ -130,7 +130,7 @@ var pages =  utils.getMultiEntry('./src/'+config.moduleName+'/**/**/*.html');
 for (var pathname in pages) {
 
   var conf = {
-    filename: pathname + '.html',
+    filename: pathname.split('/')[1] + '.html',
     template: pages[pathname], // 模板路径
     chunks: ['vendor',pathname], // 每个html引用的js模块
     inject: true,              // js插入位置
@@ -140,17 +140,17 @@ for (var pathname in pages) {
   webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
 
-webpackConfig.plugins.push(new HtmlWebpackPlugin({
-  filename: config.build.index,
-  template: 'index.html',
-  inject: true,
-  minify: {
-    removeComments: true,
-    collapseWhitespace: true,
-    removeAttributeQuotes: true
-  },
-  chunksSortMode: 'dependency'
-}));
+// webpackConfig.plugins.push(new HtmlWebpackPlugin({
+//   filename: config.build.index,
+//   template: 'index.html',
+//   inject: true,
+//   minify: {
+//     removeComments: true,
+//     collapseWhitespace: true,
+//     removeAttributeQuotes: true
+//   },
+//   chunksSortMode: 'dependency'
+// }));
 
 
 
